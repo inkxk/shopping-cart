@@ -34,7 +34,7 @@ const Navbar = () => {
                             position: "absolute",
                             bottom: 0,
                             right: 0,
-                            transform: "translate(25%, 25%)",
+                            transform: "translate(35%, 35%)",
                         }}
                     >
                         3
