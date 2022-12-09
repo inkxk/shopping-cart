@@ -18,7 +18,7 @@ const Navbar = () => {
                     </Nav.Link>
                 </Nav>
                 <Button
-                    style={{ width: "3rem", height: "3rem", position: "relative" }}
+                    style={{ width: "2.75rem", height: "2.75rem", position: "relative" }}
                     variant="outline-primary"
                     className="rounded-circle"
                 >
@@ -29,8 +29,8 @@ const Navbar = () => {
                         className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
                         style={{
                             color: "white",
-                            width: "1.5rem",
-                            height: "1.5rem",
+                            width: "1.25rem",
+                            height: "1.25rem",
                             position: "absolute",
                             bottom: 0,
                             right: 0,
