@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import ShoppingCart from "../components/ShoppingCart";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 type ShoppingCartProviderProps = {
     children: ReactNode;
@@ -28,12 +29,13 @@ export const useShoppingCart = () => {
 };
 
 export const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
-    const [cartItem, setCartItem] = useState<CartItem[]>([]);
+    const [cartItem, setCartItem] = useLocalStorage<CartItem[]>("shopping-cart", []);
     const [isOpen, setIsOpen] = useState(false);
 
     const openCart = () => setIsOpen(true);
     const closeCart = () => setIsOpen(false);
-    const cartQuantity = cartItem.reduce((quantity, item) => item.quantity + quantity, 0);
+    // initial = 0, quantity=sumผลจากแต่ละรอบloop, cartQuantity=resultผลลัพธ์สุดท้ายที่บวกกันทั้งหมด
+    const cartQuantity = cartItem.reduce((quantity, item) => quantity + item.quantity, 0);
 
     const getItemQuantity = (id: number) => {
         // ถ้าใน cart มี item
@@ -108,7 +110,7 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) =>
             }}
         >
             {children}
-            <ShoppingCart />
+            <ShoppingCart isOpen={isOpen} />
         </ShoppingCartContext.Provider>
     );
 };
